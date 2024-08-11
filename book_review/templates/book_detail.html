@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }}</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p><strong>Автор:</strong> {{ book.author.name }}</p>
+    <p><strong>Описание:</strong> {{ book.description }}</p>
+    <p><strong>Год публикации:</strong> {{ book.publication_year }}</p>
+    <p><strong>Средний рейтинг:</strong> {{ average_rating|floatformat:1 }}</p>
+    {% if book.file %}
+    <a href="{{ book.file.url }}" download class="btn btn-primary">Скачать книгу</a>
+     {% else %}
+    <p>Файл книги не доступен.</p>
+  {% endif %}
+    <h2>Отзывы:</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.user_name }}:</strong> {{ review.rating }} - {{ review.text }}
+            </li>
+        {% empty %}
+            <li>Отзывов нет.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Оставить отзыв:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить отзыв</button>
+    </form>
+
+    <a href="{% url 'book_list' %}">К списку книг</a>
+    <a href="{% url 'home' %}">На главную</a>
+</body>
+</html>
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Подробности об авторе</title>
+</head>
+<body>
+    <h1>{{ author.name }}</h1>
+    <p>{{ author.biography }}</p>
+
+    <h2>Книги автора</h2>
+  <ul>
+    {% for book in books %}
+      <li>
+        <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+      </li>
+    {% empty %}
+      <li>Нет книг.</li>
+    {% endfor %}
+  </ul>
+
+    <a href="{% url 'author_list' %}">Вернуться к списку авторов</a>
+    <a href="{% url 'home' %}">На главную</a>
+    <a href="{% url 'book_list' %}">К списку книг</a>
+</body>
+</html>

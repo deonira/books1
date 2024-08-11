@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить автора</title>
+</head>
+<body>
+    <h1>Добавить нового автора</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'author_list' %}">Вернуться к списку авторов</a>
+    <a href="{% url 'home' %}">На главную</a>
+</body>
+</html>

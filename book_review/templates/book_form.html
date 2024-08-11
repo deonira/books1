@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить книгу</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить книгу</title>
+</head>
+<body>
+    <h1>Добавить книгу{% if author %} к {{ author.name }}{% endif %}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'author_list' %}">Вернуться к списку авторов</a>
+    <a href="{% url 'home' %}">На главную</a>
+    <a href="{% url 'book_list' %}">К списку книг</a>
+</body>
+</html>
